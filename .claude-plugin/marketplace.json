@@ -1,0 +1,17 @@
+{
+  "name": "nan-skills",
+  "version": "0.1.0",
+  "owner": {
+    "name": "Renan Costa Alencar",
+    "url": "https://linktr.ee/renan.costaalencar"
+  },
+  "description": "Plugin that exposes a curated collection of Agent Skills (SKILL.md) for teaching, coding and personal knowledge workflows.",
+  "plugins": [
+    {
+      "name": "nan-skills",
+      "source": ".",
+      "description": "Claude-compatible skills created and curated by NaN.",
+      "version": "0.1.0"
+    }
+  ]
+}

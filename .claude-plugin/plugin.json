@@ -1,0 +1,21 @@
+{
+  "name": "nan-skills",
+  "version": "0.1.0",
+  "description": "Plugin that exposes a curated collection of Agent Skills (SKILL.md) for teaching, coding and personal knowledge workflows.",
+  "author": {
+    "name": "Renan Costa Alencar",
+    "url": "https://linktr.ee/renan.costaalencar"
+  },
+  "repository": "https://github.com/renanalencar/nan-skills",
+  "license": "MIT",
+  "keywords": [
+    "teaching",
+    "lesson-plans",
+    "education",
+    "git",
+    "prompt-engineering",
+    "knowledge-management",
+    "learning",
+    "note-taking"
+  ]
+}
