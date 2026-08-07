@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- =====================================================================
+       APRESENTAÇÃO PARA PROJETAR EM SALA — reveal.js
+       Aula: {{ASSUNTO}}
+
+       COMO USAR
+       1. Vendorize as dependências (os scripts da skill NÃO baixam nada):
+            cd aulas/{{SLUG}}
+            mkdir -p vendor/reveal vendor/mermaid
+            npm pack reveal.js && tar -xzf reveal.js-*.tgz
+            npm pack mermaid   && tar -xzf mermaid-*.tgz
+          Do pacote reveal.js (pasta package/), copie para vendor/reveal/
+          mantendo a estrutura dist/:
+            dist/reveal.js  dist/reveal.css  dist/reset.css
+            dist/theme/white.css
+            dist/plugin/highlight.js  dist/plugin/highlight/monokai.css
+            dist/plugin/notes.js  dist/plugin/search.js  dist/plugin/zoom.js
+          Do pacote mermaid, copie dist/mermaid.min.js para vendor/mermaid/.
+          Depois apague as pastas package/ e os .tgz.
+
+       2. NUNCA use CDN aqui. O Wi-Fi da sala não é confiável, e apresentação
+          que depende de rede é apresentação que um dia não abre.
+
+       3. Sempre os arquivos UMD (.js), nunca os ESM (.mjs): este arquivo é
+          aberto via file://, e módulo ES nesse protocolo é bloqueado por CORS
+          (a tela fica em branco, sem erro visível para o público).
+
+       4. Teste abrindo no navegador ANTES da aula, no notebook que vai para
+          a sala, com o cabo do projetor conectado.
+
+       ONDE O PROFESSOR MEXE
+       - Troque tudo que estiver entre {{CHAVES_DUPLAS}}.
+       - Cada slide é uma <section>. Duplique/remova à vontade.
+       - Notas do apresentador: <aside class="notes">…</aside> (aparecem só
+         na sua tela, no modo apresentador — tecla S).
+       - Diagramas: <pre class="mermaid">…</pre>, nunca arte ASCII.
+
+       ATALHOS DE TECLADO (também no slide de ajuda, no final)
+         S            modo apresentador (notas + próximo slide + cronômetro)
+         F            tela cheia
+         O ou Esc     visão geral dos slides
+         B            tela preta (puxa a atenção de volta para a sua fala)
+         setas/espaço navegar
+       ===================================================================== -->
+
+  <title>{{ASSUNTO}}</title>
+
+  <link rel="stylesheet" href="vendor/reveal/dist/reset.css">
+  <link rel="stylesheet" href="vendor/reveal/dist/reveal.css">
+  <!-- Tema base. Outras opções vendorizáveis: black.css, league.css, solarized.css -->
+  <link rel="stylesheet" href="vendor/reveal/dist/theme/white.css" id="theme">
+  <!-- Realce de sintaxe do plugin highlight -->
+  <link rel="stylesheet" href="vendor/reveal/dist/plugin/highlight/monokai.css">
+
+  <style>
+    /* ==================================================================
+       Ajustes de legibilidade para PROJEÇÃO.
+       Projetor tem menos contraste e menos resolução efetiva que o monitor:
+       fonte maior, contraste mais alto, menos coisa por slide.
+       ================================================================== */
+
+    :root {
+      --cor-fundo-claro: #fdfdfd;
+      --cor-texto-claro: #1a1a1a;
+      --cor-destaque-claro: #b02a00;
+      --cor-fundo-escuro: #14171a;
+      --cor-texto-escuro: #f2f2f2;
+      --cor-destaque-escuro: #ff9d6e;
+    }
+
+    .reveal h1 { font-size: 2.1em; }
+    .reveal h2 { font-size: 1.5em; }
+    .reveal h3 { font-size: 1.15em; }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: 0; }
+
+    /* Bullets menores que o padrão do reveal, para caber mais linha sem apertar */
+    .reveal ul, .reveal ol { font-size: 0.85em; line-height: 1.45; }
+    .reveal li + li { margin-top: 0.35em; }
+
+    /* Código: o padrão do reveal é pequeno demais para quem está no fundo da sala */
+    .reveal pre { width: 100%; box-shadow: none; font-size: 0.5em; }
+    .reveal pre code {
+      max-height: 62vh;
+      padding: 0.8em 1em;
+      line-height: 1.35;
+      border-radius: 6px;
+    }
+    .reveal code:not(pre code) {
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+      background: rgba(127, 127, 127, 0.18);
+      font-size: 0.9em;
+    }
+
+    /* Tabelas: largura total e fonte legível a 5 metros */
+    .reveal table { width: 100%; font-size: 0.62em; border-collapse: collapse; }
+    .reveal table th, .reveal table td {
+      padding: 0.35em 0.6em;
+      border-bottom: 1px solid rgba(127, 127, 127, 0.35);
+    }
+    .reveal table th { text-align: left; font-weight: 700; }
+
+    /* Diagramas Mermaid ocupam o slide inteiro sem estourar */
+    .reveal pre.mermaid {
+      background: none;
+      box-shadow: none;
+      display: flex;
+      justify-content: center;
+      font-size: 1em;
+    }
+    /* !important porque o Mermaid grava um max-width fixo em px no style inline
+       do SVG; sem isso o diagrama não acompanha a largura do slide. */
+    .reveal pre.mermaid svg {
+      max-width: 100% !important;
+      max-height: 62vh;
+      height: auto;
+    }
+
+    /* Frase de leitura do diagrama: obrigatória, para leitor de tela e versão impressa */
+    .leitura-diagrama {
+      font-size: 0.5em;
+      opacity: 0.8;
+      margin-top: 0.6em;
+      font-style: italic;
+    }
+
+    .rodape-fonte { font-size: 0.4em; opacity: 0.7; margin-top: 1em; }
+    .destaque { color: var(--cor-destaque-claro); font-weight: 700; }
+
+    /* ---------- Tema claro (padrão) ---------- */
+    :root, :root[data-theme="light"] {
+      --r-background-color: var(--cor-fundo-claro);
+      --r-main-color: var(--cor-texto-claro);
+      --r-heading-color: var(--cor-texto-claro);
+      --r-link-color: var(--cor-destaque-claro);
+      --r-link-color-hover: var(--cor-destaque-claro);
+      --r-selection-background-color: #ffd9c9;
+    }
+
+    /* ---------- Tema escuro ----------
+       Segue a preferência do sistema. Para forçar um dos dois na sala
+       (projetor claro demais, por exemplo), coloque no <html> acima:
+         data-theme="dark"  ou  data-theme="light"
+       ------------------------------------------------------------------ */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --r-background-color: var(--cor-fundo-escuro);
+        --r-main-color: var(--cor-texto-escuro);
+        --r-heading-color: var(--cor-texto-escuro);
+        --r-link-color: var(--cor-destaque-escuro);
+        --r-link-color-hover: var(--cor-destaque-escuro);
+        --r-selection-background-color: #4a2a18;
+      }
+      :root:not([data-theme="light"]) .destaque { color: var(--cor-destaque-escuro); }
+    }
+
+    :root[data-theme="dark"] {
+      --r-background-color: var(--cor-fundo-escuro);
+      --r-main-color: var(--cor-texto-escuro);
+      --r-heading-color: var(--cor-texto-escuro);
+      --r-link-color: var(--cor-destaque-escuro);
+      --r-link-color-hover: var(--cor-destaque-escuro);
+      --r-selection-background-color: #4a2a18;
+    }
+    :root[data-theme="dark"] .destaque { color: var(--cor-destaque-escuro); }
+
+    /* O tema do reveal pinta o body; garantimos que a variável valha */
+    .reveal-viewport { background-color: var(--r-background-color); }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============ SLIDE 1 — TÍTULO ============ -->
+      <section>
+        <h1>{{ASSUNTO}}</h1>
+        <p>{{SUBTITULO}}</p>
+        <p class="rodape-fonte">
+          {{PROFESSOR}} · {{DISCIPLINA}} · {{DATA_AULA}}<br>
+          Dados verificados em {{DATA_VERIFICACAO}}
+        </p>
+
+        <aside class="notes">
+          {{NOTA_APRESENTADOR_ABERTURA}}
+          Lembrete: apertar F para tela cheia e S para abrir esta tela de notas.
+          Abrir a aula com o problema, não com a definição.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 2 — AGENDA ============ -->
+      <section>
+        <h2>Agenda</h2>
+        <ul>
+          <li>{{TOPICO_1}}</li>
+          <li>{{TOPICO_2}}</li>
+          <li>{{TOPICO_3}}</li>
+          <li>{{TOPICO_4}}</li>
+        </ul>
+        <p class="leitura-diagrama">
+          Ao final da aula você deve ser capaz de: {{OBJETIVO_1}}; {{OBJETIVO_2}}.
+        </p>
+
+        <aside class="notes">
+          {{NOTA_APRESENTADOR_AGENDA}}
+          Dizer quanto tempo cada bloco leva, para o aluno se organizar.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 3 — DIAGRAMA (Mermaid) ============
+           Diagramas SEMPRE em <pre class="mermaid">, nunca arte ASCII.
+           Tipos seguros: flowchart, stateDiagram-v2, sequenceDiagram, pie,
+           timeline, mindmap, erDiagram, gantt.
+           Evite block-beta e outros diagramas beta: as versões de Mermaid do
+           Obsidian, do Marp e a vendorizada aqui são diferentes, e o que é
+           beta em uma vira bloco de erro vermelho na outra — no projetor.
+           Máximo ~9 nós. Rótulos curtos e sempre entre aspas: A["Rótulo (x)"].
+           ======================================================== -->
+      <section>
+        <h2>{{TITULO_DIAGRAMA}}</h2>
+
+        <pre class="mermaid">
+flowchart TB
+  A["{{NO_1}}"] -->|"{{RELACAO_1}}"| B["{{NO_2}}"]
+  B -->|"{{RELACAO_2}}"| C["{{NO_3}}"]
+  C -->|"{{RELACAO_3}}"| D["{{NO_4}}"]
+        </pre>
+
+        <p class="leitura-diagrama">Como ler: {{LEITURA_DIAGRAMA}}</p>
+
+        <aside class="notes">
+          {{NOTA_APRESENTADOR_DIAGRAMA}}
+          Percorrer o diagrama em voz alta, de cima para baixo, antes de entrar
+          nos detalhes. Perguntar à turma o que acontece se um dos nós falhar.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 4 — CÓDIGO ============
+           data-line-numbers destaca linhas progressivamente a cada avanço.
+           Ex.: data-line-numbers="1-3|5|7-9" mostra primeiro 1-3, depois 5, etc.
+           Troque "c" pela linguagem do exemplo (python, js, java, sql, bash…).
+           ============================================================ -->
+      <section>
+        <h2>{{TITULO_EXEMPLO}}</h2>
+
+        <pre><code class="language-{{LINGUAGEM}}" data-trim data-line-numbers="{{LINHAS_DESTAQUE}}">
+{{EXEMPLO_MAIN}}
+        </code></pre>
+
+        <p class="leitura-diagrama">{{EXPLICACAO_EXEMPLO}}</p>
+
+        <aside class="notes">
+          {{NOTA_APRESENTADOR_EXEMPLO}}
+          Erro comum a antecipar aqui: {{ERRO_COMUM_1}}
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 5 — ENCERRAMENTO ============ -->
+      <section>
+        <h2>Resumo</h2>
+        <ul>
+          <li>{{RESUMO_1}}</li>
+          <li>{{RESUMO_2}}</li>
+          <li>{{RESUMO_3}}</li>
+        </ul>
+        <p>Próximo passo: <span class="destaque">{{PROXIMO_PASSO}}</span></p>
+        <p class="rodape-fonte">
+          Fontes: {{FONTE_URL_1}} · {{FONTE_URL_2}} — verificadas em {{DATA_VERIFICACAO}}
+        </p>
+
+        <aside class="notes">
+          {{NOTA_APRESENTADOR_FECHAMENTO}}
+          Fechar o ciclo: retomar o problema do slide 1 e mostrar como o
+          conteúdo de hoje resolve aquilo.
+        </aside>
+      </section>
+
+      <!-- ============ SLIDE 6 — AJUDA (atalhos) ============
+           Slide de apoio para o professor. Pode apagar antes de projetar.
+           ================================================================ -->
+      <section>
+        <h3>Atalhos desta apresentação</h3>
+        <table>
+          <thead>
+            <tr><th>Tecla</th><th>Ação</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>S</code></td><td>modo apresentador (notas, próximo slide, cronômetro)</td></tr>
+            <tr><td><code>F</code></td><td>tela cheia</td></tr>
+            <tr><td><code>O</code> ou <code>Esc</code></td><td>visão geral dos slides</td></tr>
+            <tr><td><code>B</code></td><td>tela preta</td></tr>
+            <tr><td>setas / espaço</td><td>navegar</td></tr>
+          </tbody>
+        </table>
+        <p class="rodape-fonte">
+          O modo apresentador abre uma segunda janela: libere pop-ups para este
+          arquivo se a tecla <code>S</code> não responder.
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Bibliotecas locais (vendor/). Versões UMD, carregadas por <script src>,
+       porque este arquivo roda via file:// e módulos ES seriam bloqueados. -->
+  <script src="vendor/reveal/dist/reveal.js"></script>
+  <script src="vendor/reveal/dist/plugin/notes.js"></script>
+  <script src="vendor/reveal/dist/plugin/highlight.js"></script>
+  <script src="vendor/reveal/dist/plugin/search.js"></script>
+  <script src="vendor/reveal/dist/plugin/zoom.js"></script>
+  <script src="vendor/mermaid/mermaid.min.js"></script>
+
+  <script>
+    // =================================================================
+    // ORDEM IMPORTA: Mermaid renderiza ANTES de Reveal.initialize().
+    // Se o Mermaid rodar depois, o reveal.js já calculou o layout com os
+    // <pre> ainda vazios, e os diagramas saem com tamanho errado —
+    // minúsculos, cortados ou estourando o slide. Por isso o await abaixo.
+    // =================================================================
+    (async function () {
+      const prefereEscuro = window.matchMedia
+        && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const temaForcado = document.documentElement.getAttribute('data-theme');
+      const escuro = temaForcado ? temaForcado === 'dark' : prefereEscuro;
+
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: false,             // nunca automático: nós controlamos o momento
+          theme: escuro ? 'dark' : 'default',
+          securityLevel: 'loose',
+          flowchart: { htmlLabels: true, curve: 'basis' },
+          themeVariables: { fontSize: '20px' }
+        });
+
+        // O reveal.css deixa todo slide com display:none até a inicialização.
+        // Se o Mermaid rodar nesse estado, ele mede os rótulos como zero e
+        // desenha o gráfico de erro ("Syntax error in text") no lugar do
+        // diagrama. Por isso tornamos os slides visíveis só durante a
+        // renderização e devolvemos o controle ao reveal logo em seguida.
+        // Esconder com opacity (NÃO com visibility:hidden nem display:none):
+        // opacity não interfere na medição de texto, então o Mermaid continua
+        // calculando os rótulos direito, e o público não vê os slides
+        // empilhados por uma fração de segundo enquanto renderiza.
+        const palco = document.querySelector('.reveal');
+        const secoes = document.querySelectorAll('.reveal .slides section');
+        if (palco) palco.style.opacity = '0';
+        secoes.forEach(function (s) { s.style.setProperty('display', 'block', 'important'); });
+
+        try {
+          await mermaid.run();           // renderiza todos os <pre class="mermaid">
+        } catch (erro) {
+          console.error('Falha ao renderizar diagrama Mermaid:', erro);
+        } finally {
+          secoes.forEach(function (s) { s.style.removeProperty('display'); });
+          if (palco) palco.style.removeProperty('opacity');
+        }
+      } else {
+        console.warn('mermaid.min.js não encontrado em vendor/mermaid/ — os diagramas não vão aparecer.');
+      }
+
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        controls: true,
+        progress: true,
+        transition: 'slide',
+        // Área lógica do slide: o reveal escala isso para a resolução do projetor
+        width: 1280,
+        height: 760,
+        margin: 0.06,
+        minScale: 0.2,
+        maxScale: 2.0,
+        plugins: [RevealNotes, RevealHighlight, RevealSearch, RevealZoom]
+      });
+    })();
+  </script>
+</body>
+</html>
