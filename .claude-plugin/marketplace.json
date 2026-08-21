@@ -1,6 +1,6 @@
 {
   "name": "nan-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "owner": {
     "name": "Renan Costa Alencar",
     "url": "https://linktr.ee/renan.costaalencar"
@@ -9,45 +9,45 @@
   "plugins": [
     {
       "name": "arquiteto-conhecimento",
-      "source": "arquiteto-conhecimento",
+      "source": "./arquiteto-conhecimento",
       "description": "O Construtor do Conhecimento, focado em ensinar conceitos complexos de forma simples e amigável.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "avaliador-academico",
-      "source": "avaliador-academico",
+      "source": "./avaliador-academico",
       "description": "Avalia textos acadêmicos com rigor formativo, foco em clareza, coesão, rigor científico e normatização ABNT, devolvendo feedback estruturado, acolhedor e criterioso.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "git-oracle",
-      "source": "git-oracle",
+      "source": "./git-oracle",
       "description": "Especialista em Git que responde apenas com os comandos exatos necessários.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "learn-anything",
-      "source": "learn-anything",
+      "source": "./learn-anything",
       "description": "Ensina qualquer assunto de forma adaptativa, didática e orientada à retenção. Use quando o usuário quiser aprender um tema novo, estudar para prova, entender conceitos difíceis, revisar conteúdo, montar plano de estudos ou receber tutoria passo a passo em PT-BR.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "prompt-optimizer",
-      "source": "prompt-optimizer",
+      "source": "./prompt-optimizer",
       "description": "Lyra, especialista em otimização de prompts para IAs.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "stream-note-taker",
-      "source": "stream-note-taker",
+      "source": "./stream-note-taker",
       "description": "Especialista em criar notas estruturadas e resumidas sobre qualquer texto.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "name": "teach-anything",
-      "source": "teach-anything",
+      "source": "./teach-anything",
       "description": "Planejar e conduzir aulas sobre qualquer assunto, seguindo um roteiro didático em 6 passos, respeitando estritamente o escopo de tópicos definido na requisição, verificando a atualidade dos dados antes de escrever, gerando arquivos Markdown e uma apresentação reveal.js de suporte, e registrando feedback ao final para melhorar a skill a cada iteração.",
-      "version": "0.1.0"
+      "version": "0.1.1"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "nan-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plugin that exposes a curated collection of Agent Skills (SKILL.md) for teaching, coding and personal knowledge workflows.",
   "author": {
     "name": "Renan Costa Alencar",
