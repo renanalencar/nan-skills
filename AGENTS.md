@@ -35,7 +35,7 @@ Creates `teach-anything/aulas/<slug>/` with `lesson-plan.md`, `student-notes.md`
 
 ## Conventions
 
-- The repository itself is distributed as a **Claude Plugin Marketplace** via the `.claude-plugin/` directory.
+- The repository itself is distributed as a **Claude Plugin Marketplace** via the `.claude-plugin/marketplace.json` file, which exposes each skill as an independent plugin.
 - Skill frontmatter in `SKILL.md` uses YAML `---` delimiters with at least `name` and `description` fields.
 - All lesson content and skill prose is in **Brazilian Portuguese**.
 - Finalized examples or references go under `references/<slug>/` in their respective skill folder.

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repository is
 
-`nan-skills` is a **Claude Plugin Marketplace** (declared via `.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json`) that distributes a curated collection of Agent Skills. There is no build, lint, or test tooling — this is a content/prompt repository, not an application. "Development" here means authoring or editing `SKILL.md` files, their supporting assets, and (for `teach-anything`) small scaffolding scripts.
+`nan-skills` is a **Claude Plugin Marketplace** (declared via `.claude-plugin/marketplace.json`) that distributes a curated collection of Agent Skills, exposing each skill as an independent plugin. There is no build, lint, or test tooling — this is a content/prompt repository, not an application. "Development" here means authoring or editing `SKILL.md` files, their supporting assets, and (for `teach-anything`) small scaffolding scripts.
 
 All skill prose and generated content is written in **Brazilian Portuguese**, even though this guidance file and commit messages are in English.
 

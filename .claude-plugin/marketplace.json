@@ -8,9 +8,45 @@
   "description": "Plugin that exposes a curated collection of Agent Skills (SKILL.md) for teaching, coding and personal knowledge workflows.",
   "plugins": [
     {
-      "name": "nan-skills",
-      "source": ".",
-      "description": "Claude-compatible skills created and curated by NaN.",
+      "name": "arquiteto-conhecimento",
+      "source": "arquiteto-conhecimento",
+      "description": "O Construtor do Conhecimento, focado em ensinar conceitos complexos de forma simples e amigável.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "avaliador-academico",
+      "source": "avaliador-academico",
+      "description": "Avalia textos acadêmicos com rigor formativo, foco em clareza, coesão, rigor científico e normatização ABNT, devolvendo feedback estruturado, acolhedor e criterioso.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "git-oracle",
+      "source": "git-oracle",
+      "description": "Especialista em Git que responde apenas com os comandos exatos necessários.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "learn-anything",
+      "source": "learn-anything",
+      "description": "Ensina qualquer assunto de forma adaptativa, didática e orientada à retenção. Use quando o usuário quiser aprender um tema novo, estudar para prova, entender conceitos difíceis, revisar conteúdo, montar plano de estudos ou receber tutoria passo a passo em PT-BR.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "prompt-optimizer",
+      "source": "prompt-optimizer",
+      "description": "Lyra, especialista em otimização de prompts para IAs.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "stream-note-taker",
+      "source": "stream-note-taker",
+      "description": "Especialista em criar notas estruturadas e resumidas sobre qualquer texto.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "teach-anything",
+      "source": "teach-anything",
+      "description": "Planejar e conduzir aulas sobre qualquer assunto, seguindo um roteiro didático em 6 passos, respeitando estritamente o escopo de tópicos definido na requisição, verificando a atualidade dos dados antes de escrever, gerando arquivos Markdown e uma apresentação reveal.js de suporte, e registrando feedback ao final para melhorar a skill a cada iteração.",
       "version": "0.1.0"
     }
   ]

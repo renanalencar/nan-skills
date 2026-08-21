@@ -6,7 +6,7 @@ This repository contains custom agent skills designed to assist in various workf
 
 ## Structure and Available Skills
 
-The repository contains several custom agent skills designed for various workflows:
+The repository contains several custom agent skills designed for various workflows. They are exposed as independent plugins via the `.claude-plugin/marketplace.json` marketplace configuration:
 
 - `arquiteto-conhecimento/` — Explains complex concepts simply and friendlily.
 - `git-oracle/` — Provides precise Git commands without extra text.
