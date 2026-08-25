@@ -17,7 +17,7 @@ Every skill lives in its own top-level directory and follows the same standard l
 - `scripts/` — executable helpers associated with the skill (shell/Python).
 - `references/` — finalized/example outputs and supplementary context (e.g. `references/<slug>/` for a completed lesson).
 
-Current skills: `arquiteto-conhecimento`, `avaliador-academico`, `git-oracle`, `learn-anything`, `prompt-optimizer`, `stream-note-taker`, `teach-anything`.
+Current skills: `arquiteto-conhecimento`, `avaliador-academico`, `git-oracle`, `learn-anything`, `personal-assistant`, `prompt-optimizer`, `stream-note-taker`, `teach-anything`.
 
 ## Key skill behaviors worth knowing
 

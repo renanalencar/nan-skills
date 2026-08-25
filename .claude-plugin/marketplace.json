@@ -1,6 +1,6 @@
 {
   "name": "nan-skills",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "owner": {
     "name": "Renan Costa Alencar",
     "url": "https://linktr.ee/renan.costaalencar"
@@ -47,6 +47,18 @@
       "name": "teach-anything",
       "source": "./teach-anything",
       "description": "Planejar e conduzir aulas sobre qualquer assunto, seguindo um roteiro didático em 6 passos, respeitando estritamente o escopo de tópicos definido na requisição, verificando a atualidade dos dados antes de escrever, gerando arquivos Markdown e uma apresentação reveal.js de suporte, e registrando feedback ao final para melhorar a skill a cada iteração.",
+      "version": "0.1.1"
+    },
+    {
+      "name": "personal-assistant",
+      "source": "./personal-assistant",
+      "description": "Assistente pessoal focado em organização, memória e produtividade diária.",
+      "version": "0.1.1"
+    },
+    {
+      "name": "pr-agent",
+      "source": "./pr-agent",
+      "description": "Agente local para análise e revisão de Pull Requests com base em contexto, diff, métricas de qualidade e decisão assistida.",
       "version": "0.1.1"
     }
   ]

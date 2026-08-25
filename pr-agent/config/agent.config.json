@@ -1,0 +1,25 @@
+{
+    "name": "pr-agent",
+    "version": "0.2.0",
+    "llm": {
+        "provider": "openai",
+        "model": "gpt-4.1-mini",
+        "ollamaModel": "llama3.1",
+        "timeoutMs": 30000
+    },
+    "rules": {
+        "maxChangedLines": 400,
+        "maxFilesChanged": 10,
+        "preferSmallPRs": true,
+        "flagLargePrs": true,
+        "complexityThreshold": 15
+    },
+    "review": {
+        "checkSolid": true,
+        "checkCleanCode": true,
+        "checkCleanArchitecture": true,
+        "checkSmells": true,
+        "checkSyntax": true,
+        "checkComplexity": true
+    }
+}

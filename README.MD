@@ -11,6 +11,8 @@ The repository contains several custom agent skills designed for various workflo
 - `arquiteto-conhecimento/` — Explains complex concepts simply and friendlily.
 - `git-oracle/` — Provides precise Git commands without extra text.
 - `learn-anything/` — A universal learning mentor for adaptive teaching.
+- `personal-assistant/` — Personal assistant for daily organization and productivity.
+- `pr-agent/` — Local agent for analyzing and reviewing Pull Requests based on context, diff, and quality metrics.
 - `prompt-optimizer/` — Lyra, an AI prompt optimization specialist.
 - `stream-note-taker/` — Creates detailed, concise, and structured notes from texts.
 - `teach-anything/` — The main educational content creation skill.

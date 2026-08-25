@@ -16,6 +16,8 @@ The repository is structured following the [Agent Skills Best Practices](https:/
 - `avaliador-academico/` — Avalia textos acadêmicos com rigor formativo, foco em clareza, coesão, rigor científico e normatização ABNT.
 - `git-oracle/` — Especialista em Git que responde apenas com os comandos exatos necessários.
 - `learn-anything/` — O Mentor de Aprendizagem Universal, que ensina de forma adaptativa, didática e orientada à retenção.
+- `personal-assistant/` — Assistente pessoal focado em organização, memória e produtividade diária.
+- `pr-agent/` — Agente local para análise e revisão de Pull Requests com base em contexto, diff, métricas de qualidade e decisão assistida.
 - `prompt-optimizer/` — Lyra, especialista em otimização de prompts para IAs.
 - `stream-note-taker/` — Especialista em criar notas estruturadas e resumidas sobre qualquer texto.
 - `teach-anything/` — Skill focada na criação estruturada de aulas e materiais didáticos (plano de 5 passos).

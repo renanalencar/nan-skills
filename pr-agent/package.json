@@ -1,0 +1,26 @@
+{
+    "name": "pr-agent",
+    "version": "0.1.0",
+    "description": "Agente baseado em LLM para análise e revisão de Pull Requests.",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "ts-node src/index.ts"
+    },
+    "keywords": [
+        "llm",
+        "ai-agent",
+        "code-review",
+        "pull-request"
+    ],
+    "author": "Renan Costa Alencar",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^1.7.0"
+    },
+    "devDependencies": {
+        "typescript": "^5.4.0",
+        "ts-node": "^10.9.2"
+    }
+}
